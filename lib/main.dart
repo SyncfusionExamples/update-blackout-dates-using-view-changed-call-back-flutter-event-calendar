@@ -61,13 +61,16 @@ class BlackoutDates extends State<BlackoutDates_Updation> {
   }
 
   void viewChanged(ViewChangedDetails viewChangedDetails) {
+    List<DateTime> _blackoutDateCollection = <DateTime>[];
+
+    _blackoutDateCollection.add(viewChangedDetails.visibleDates[0]);
+    _blackoutDateCollection.add(viewChangedDetails.visibleDates[1]);
+    _blackoutDateCollection.add(viewChangedDetails.visibleDates[2]);
+    _blackoutDateCollection.add(viewChangedDetails.visibleDates[3]);
+    _blackoutDateCollection.add(viewChangedDetails.visibleDates[4]);
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        _blackoutDates.add(viewChangedDetails.visibleDates[0]);
-        _blackoutDates.add(viewChangedDetails.visibleDates[1]);
-        _blackoutDates.add(viewChangedDetails.visibleDates[2]);
-        _blackoutDates.add(viewChangedDetails.visibleDates[3]);
-        _blackoutDates.add(viewChangedDetails.visibleDates[4]);
+        _blackoutDates = _blackoutDateCollection;
       });
     });
   }
