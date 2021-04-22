@@ -12,7 +12,7 @@ class BlackoutDates_Updation extends StatefulWidget {
 }
 
 class BlackoutDates extends State<BlackoutDates_Updation> {
-  List<DateTime>? _blackoutDates = <DateTime>[];
+  List<DateTime> _blackoutDates = <DateTime>[];
 
   @override
   Widget build(BuildContext context) {
