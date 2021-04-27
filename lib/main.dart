@@ -12,13 +12,7 @@ class BlackoutDates_Updation extends StatefulWidget {
 }
 
 class BlackoutDates extends State<BlackoutDates_Updation> {
-  List<DateTime> _blackoutDates;
-
-  @override
-  void initState() {
-    _blackoutDates = <DateTime>[];
-    super.initState();
-  }
+  List<DateTime> _blackoutDates = <DateTime>[];
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +20,19 @@ class BlackoutDates extends State<BlackoutDates_Updation> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           body: SafeArea(
-            child: SfCalendar(
-              view: CalendarView.month,
-              dataSource: _getCalendarDataSource(),
-              allowedViews: [
-                CalendarView.month,
-                CalendarView.timelineMonth,
-              ],
-              blackoutDates: _blackoutDates,
-              onViewChanged: viewChanged,
-              blackoutDatesTextStyle: TextStyle(
-                  color: Colors.red, decoration: TextDecoration.lineThrough),
-            ),
-          )),
+        child: SfCalendar(
+          view: CalendarView.month,
+          dataSource: _getCalendarDataSource(),
+          allowedViews: [
+            CalendarView.month,
+            CalendarView.timelineMonth,
+          ],
+          blackoutDates: _blackoutDates,
+          onViewChanged: viewChanged,
+          blackoutDatesTextStyle: TextStyle(
+              color: Colors.red, decoration: TextDecoration.lineThrough),
+        ),
+      )),
     );
   }
 
@@ -68,7 +62,7 @@ class BlackoutDates extends State<BlackoutDates_Updation> {
     _blackoutDateCollection.add(viewChangedDetails.visibleDates[2]);
     _blackoutDateCollection.add(viewChangedDetails.visibleDates[3]);
     _blackoutDateCollection.add(viewChangedDetails.visibleDates[4]);
-    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
       setState(() {
         _blackoutDates = _blackoutDateCollection;
       });
