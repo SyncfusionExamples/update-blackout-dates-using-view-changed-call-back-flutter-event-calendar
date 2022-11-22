@@ -3,10 +3,12 @@ import 'package:flutter/scheduler.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 void main() {
-  return runApp(BlackoutDates_Updation());
+  return runApp(const BlackoutDates_Updation());
 }
 
 class BlackoutDates_Updation extends StatefulWidget {
+  const BlackoutDates_Updation({super.key});
+
   @override
   BlackoutDates createState() => BlackoutDates();
 }
@@ -20,19 +22,19 @@ class BlackoutDates extends State<BlackoutDates_Updation> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           body: SafeArea(
-        child: SfCalendar(
-          view: CalendarView.month,
-          dataSource: _getCalendarDataSource(),
-          allowedViews: [
-            CalendarView.month,
-            CalendarView.timelineMonth,
-          ],
-          blackoutDates: _blackoutDates,
-          onViewChanged: viewChanged,
-          blackoutDatesTextStyle: TextStyle(
-              color: Colors.red, decoration: TextDecoration.lineThrough),
-        ),
-      )),
+            child: SfCalendar(
+              view: CalendarView.month,
+              dataSource: _getCalendarDataSource(),
+              allowedViews: const [
+                CalendarView.month,
+                CalendarView.timelineMonth,
+              ],
+              blackoutDates: _blackoutDates,
+              onViewChanged: viewChanged,
+              blackoutDatesTextStyle: const TextStyle(
+                  color: Colors.red, decoration: TextDecoration.lineThrough),
+            ),
+          )),
     );
   }
 
@@ -55,16 +57,16 @@ class BlackoutDates extends State<BlackoutDates_Updation> {
   }
 
   void viewChanged(ViewChangedDetails viewChangedDetails) {
-    List<DateTime> _blackoutDateCollection = <DateTime>[];
+    List<DateTime> blackoutDateCollection = <DateTime>[];
 
-    _blackoutDateCollection.add(viewChangedDetails.visibleDates[0]);
-    _blackoutDateCollection.add(viewChangedDetails.visibleDates[1]);
-    _blackoutDateCollection.add(viewChangedDetails.visibleDates[2]);
-    _blackoutDateCollection.add(viewChangedDetails.visibleDates[3]);
-    _blackoutDateCollection.add(viewChangedDetails.visibleDates[4]);
-    SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
+    blackoutDateCollection.add(viewChangedDetails.visibleDates[0]);
+    blackoutDateCollection.add(viewChangedDetails.visibleDates[1]);
+    blackoutDateCollection.add(viewChangedDetails.visibleDates[2]);
+    blackoutDateCollection.add(viewChangedDetails.visibleDates[3]);
+    blackoutDateCollection.add(viewChangedDetails.visibleDates[4]);
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        _blackoutDates = _blackoutDateCollection;
+        _blackoutDates = blackoutDateCollection;
       });
     });
   }
